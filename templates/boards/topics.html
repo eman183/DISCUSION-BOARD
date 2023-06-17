@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block content %} 
+    <title>{{board.name}}</title>
+</head>
+<body>
+   
+    <div class="container">
+        <ol class="breadcrumb my-4">
+            <li class="breadcrumb-item active"><a href="{% url 'index' %}">Boards</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'board_topics' board.id %}">{{board.name}}</a></li>
+
+        </ol>
+    </div>
+    <a href="{% url 'new_topic' board.pk%}" class="btn btn-primary">ADD NEW TOPIC</a>
+    <table class="table">
+   
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th>Topic</th>
+        <th>Created by</th>
+        <th>Posts</th>
+        <th>Views</th>
+        <th>Created dt</th>
+    </tr>
+    </thead>
+{% for topic in board.topics.all %}
+
+<tr>
+    <td>{{topic.subject}}</td>
+    <td>{{ topic.created_by.username}}</td>
+    <td>0</td>
+    <td>0</td>
+    <td>{{topic.created_at}}</td>
+
+</tr>
+{% endfor%}
+
+    </table>
+ 
+
+    {% endblock %}
+</body>
+</html>
